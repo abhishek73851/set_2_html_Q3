@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom HTML5 Video Player</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #333;
+            color: #fff;
+        }
+        .video-container {
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+        }
+        .controls button,
+        .controls select,
+        .controls label {
+            margin: 0 5px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="videoPlayer" controls>
+            <source src="https://www.pexels.com/video/9044939/" type="video/mp3">
+            <track kind="subtitles" src="your-subtitles-file.vtt" srclang="en" label="English">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+            <label for="playbackRate">Speed:</label>
+            <select id="playbackRate" onchange="document.getElementById('videoPlayer').playbackRate = this.value;">
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+            </select>
+            <button onclick="document.getElementById('videoPlayer').requestFullscreen();">Fullscreen</button>
+            <label for="subtitleToggle">Subtitles:</label>
+            <input type="checkbox" id="subtitleToggle" onclick="document.getElementById('videoPlayer').textTracks[0].mode = this.checked ? 'showing' : 'hidden';">
+        </div>
+    </div>
+</body>
+</html>
